@@ -4,16 +4,22 @@ import (
 	"errors"
 	"fmt"
 	"net/smtp"
-	"os"
 )
 
 var emailAuth smtp.Auth
 
-func SendEmailSMTP(to []string, data interface{}, templatePath string) (bool, error) {
-	emailHost := os.Getenv("EMAIL_HOST")
-	emailFrom := os.Getenv("EMAIL_FROM")
-	emailPassword := os.Getenv("EMAIL_PASSWORD")
-	emailPort := os.Getenv("EMAIL_PORT")
+type emailData struct {
+	from     string
+	host     string
+	password string
+	port     string
+}
+
+func SendEmailSMTP(to []string, data interface{}, templatePath string, emailData emailData) (bool, error) {
+	emailHost := emailData.host
+	emailFrom := emailData.from
+	emailPassword := emailData.password
+	emailPort := emailData.port
 
 	emailAuth = smtp.PlainAuth("", emailFrom, emailPassword, emailHost)
 
