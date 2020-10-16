@@ -8,14 +8,14 @@ import (
 
 var emailAuth smtp.Auth
 
-type emailData struct {
+type EmailData struct {
 	from     string
 	host     string
 	password string
 	port     string
 }
 
-func SendEmailSMTP(to []string, data interface{}, templatePath string, emailData emailData) (bool, error) {
+func SendEmailSMTP(to []string, data interface{}, templatePath string, emailData EmailData) (bool, error) {
 	emailHost := emailData.host
 	emailFrom := emailData.from
 	emailPassword := emailData.password
