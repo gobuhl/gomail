@@ -2,17 +2,10 @@ package gomail
 
 import (
 	"bytes"
-	"errors"
-	"fmt"
 	"html/template"
-	"path/filepath"
 )
 
-func parseTemplate(templateFileName string, data interface{}) (string, error) {
-	templatePath, err := filepath.Abs(fmt.Sprintf("gomail/email_templates/%s", templateFileName))
-	if err != nil {
-		return "", errors.New("invalid template name")
-	}
+func parseTemplate(templatePath string, data interface{}) (string, error) {
 	t, err := template.ParseFiles(templatePath)
 	if err != nil {
 		return "", err
