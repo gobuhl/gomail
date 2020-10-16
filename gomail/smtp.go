@@ -9,17 +9,17 @@ import (
 var emailAuth smtp.Auth
 
 type EmailData struct {
-	from     string
-	host     string
-	password string
-	port     string
+	From     string
+	Host     string
+	Password string
+	Port     string
 }
 
 func SendEmailSMTP(to []string, data interface{}, templatePath string, emailData EmailData) (bool, error) {
-	emailHost := emailData.host
-	emailFrom := emailData.from
-	emailPassword := emailData.password
-	emailPort := emailData.port
+	emailHost := emailData.Host
+	emailFrom := emailData.From
+	emailPassword := emailData.Password
+	emailPort := emailData.Port
 
 	emailAuth = smtp.PlainAuth("", emailFrom, emailPassword, emailHost)
 
